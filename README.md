@@ -1,2 +1,5 @@
-# woocommerce-simplify-checkout
-Short plugin for Woocommerce, which simplifies the ordering process
+# Woocommerce Simplify Checkout
+## Wordpress Plugin
+
+(RU) Простой плагин для упрощения процесса оформления заказа.
+(EN) Short plugin for Woocommerce, which simplifies the ordering process.
