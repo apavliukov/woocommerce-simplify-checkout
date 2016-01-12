@@ -4,7 +4,7 @@
 	Plugin Name:       Woocommerce Simplify Checkout
 	Plugin URI:        https://github.com/tanzoor/woocommerce-simplify-checkout
 	Description:       Short plugin for Woocommerce, which simplifies the ordering process.
-	Version:           0.1.0
+	Version:           1.0.0
 	Author:            Alexander Pavlyukov
 	License:           GNU General Public License v2
 	License URI:       http://www.gnu.org/licenses/gpl-2.0.html
