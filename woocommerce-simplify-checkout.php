@@ -15,21 +15,32 @@
 // Отключаем выбор типа оплаты в чекауте
 add_filter('woocommerce_cart_needs_payment', '__return_false');
 
+// Делаем отстутствующие обязательные поля необязательными
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+function custom_override_checkout_fields( $fields ) {
+
+	$fields['billing']['billing_last_name'] = array(
+      'required' => false
+   	);
+
+   	$fields['billing']['billing_address_1'] = array(
+      'required' => false
+   	);
+
+   	$fields['billing']['billing_city'] = array(
+      'required' => false
+   	);
+
+    return $fields;
+}
+
 // Убираем из корзины переход в чекаут
-add_action( 'woocommerce_after_cart_table', 'fila_edit_collaterals_block' );
+add_action( 'woocommerce_cart_collaterals', 'fila_edit_collaterals_block', 1 );
 function fila_edit_collaterals_block() {
 
-	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 	remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10 );
 	remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
 
-	// Убираем ненужный блок "Additional information"
-	remove_all_actions( 'woocommerce_after_checkout_billing_form' );
-
-	add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
-
-	echo '<h2 class="entry-title">Оформление заказа</h2>';	
-
-	echo do_shortcode('[woocommerce_checkout]');
+	load_template( plugin_dir_path( __FILE__ ) . 'templates/form-checkout.php', true );
 
 }
