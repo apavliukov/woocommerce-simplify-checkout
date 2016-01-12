@@ -11,7 +11,6 @@ wc_print_notices();
 
 $checkout = WC()->checkout();
 
-global $current_user;
 $customer_id = get_current_user_id();
 
 // If checkout registration is disabled and not logged in, the user cannot checkout
@@ -53,7 +52,7 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 			<div class="form-group">
 				<div class="col-md-9 col-md-offset-3 checkout-submit">
 					<?php wp_nonce_field( 'woocommerce-process_checkout' ); ?>
-					<input type="submit" class="btn btn-callback" name="woocommerce_checkout_place_order" id="place_order" value="Оформить заказ" data-value="Оформить заказ" />
+					<input type="submit" class="btn btn-submit" name="woocommerce_checkout_place_order" id="place_order" value="Оформить заказ" data-value="Оформить заказ" />
 				</div>
 			</div>
 
