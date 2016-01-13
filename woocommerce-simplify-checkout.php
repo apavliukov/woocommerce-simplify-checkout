@@ -34,6 +34,27 @@ function custom_override_checkout_fields( $fields ) {
     return $fields;
 }
 
+// Функция для получения значения опред. поля адреса клиента
+// Чтобы не нагружать шаблон лишним кодом, вынес в отдельную функцию
+function get_address_field_value($customer_id, $field_name) {
+	$load_address = 'billing';
+	$address = WC()->countries->get_address_fields( get_user_meta( $customer_id, $load_address . '_country', true ), $load_address . '_' );
+
+		foreach ( $address as $key => $field ) {
+			$value = get_user_meta( get_current_user_id(), $key, true );
+			if ( ! $value ) {
+				switch( $key ) {
+					case 'billing_email' :
+						$value = $current_user->user_email;
+					break;
+				}
+			}
+			$address[ $key ]['value'] = apply_filters( 'woocommerce_my_account_edit_address_field_value', $value, $key, $load_address );
+		}
+
+	return ( !empty( $address[$field_name]['value'] ) ) ? $address[$field_name]['value'] : '' ;
+}
+
 // Убираем из корзины переход в чекаут
 add_action( 'woocommerce_cart_collaterals', 'fila_edit_collaterals_block', 1 );
 function fila_edit_collaterals_block() {
