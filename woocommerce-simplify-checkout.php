@@ -19,45 +19,52 @@ add_filter('woocommerce_cart_needs_payment', '__return_false');
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 function custom_override_checkout_fields( $fields ) {
 
-	$fields['billing']['billing_last_name'] = array(
-      'required' => false
-   	);
+	$field_names = array(
+		'billing_last_name',
+		'billing_address_1',
+		'billing_address_2',
+		'billing_city',
+		'billing_postcode',
+		'billing_country',
+		'billing_state',
+		'billing_company'
+	);
 
-   	$fields['billing']['billing_address_1'] = array(
-      'required' => false
-   	);
-
-   	$fields['billing']['billing_city'] = array(
-      'required' => false
-   	);
+	foreach ($field_names as $field_name) {
+		$fields['billing'][$field_name] = array(
+	      'required' => false
+	   	);
+	}
 
     return $fields;
 }
 
 // Функция для получения значения опред. поля адреса клиента
 // Чтобы не нагружать шаблон лишним кодом, вынес в отдельную функцию
-function get_address_field_value($customer_id, $field_name) {
-	$load_address = 'billing';
-	$address = WC()->countries->get_address_fields( get_user_meta( $customer_id, $load_address . '_country', true ), $load_address . '_' );
+if ( ! function_exists( 'get_address_field_value' ) ) {
+	function get_address_field_value($customer_id, $field_name) {
+		$load_address = 'billing';
+		$address = WC()->countries->get_address_fields( get_user_meta( $customer_id, $load_address . '_country', true ), $load_address . '_' );
 
-		foreach ( $address as $key => $field ) {
-			$value = get_user_meta( get_current_user_id(), $key, true );
-			if ( ! $value ) {
-				switch( $key ) {
-					case 'billing_email' :
-						$value = $current_user->user_email;
-					break;
+			foreach ( $address as $key => $field ) {
+				$value = get_user_meta( get_current_user_id(), $key, true );
+				if ( ! $value ) {
+					switch( $key ) {
+						case 'billing_email' :
+							$value = $current_user->user_email;
+						break;
+					}
 				}
+				$address[ $key ]['value'] = apply_filters( 'woocommerce_my_account_edit_address_field_value', $value, $key, $load_address );
 			}
-			$address[ $key ]['value'] = apply_filters( 'woocommerce_my_account_edit_address_field_value', $value, $key, $load_address );
-		}
 
-	return ( !empty( $address[$field_name]['value'] ) ) ? $address[$field_name]['value'] : '' ;
+		return ( !empty( $address[$field_name]['value'] ) ) ? $address[$field_name]['value'] : '' ;
+	}
 }
 
 // Убираем из корзины переход в чекаут
-add_action( 'woocommerce_cart_collaterals', 'fila_edit_collaterals_block', 1 );
-function fila_edit_collaterals_block() {
+add_action( 'woocommerce_cart_collaterals', 'custom_checkout_form', 1 );
+function custom_checkout_form() {
 
 	remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10 );
 	remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
