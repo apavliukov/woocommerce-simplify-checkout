@@ -57,6 +57,7 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 					<input type="hidden" name="billing_middle_name" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_middle_name') ); ?>" />
 					<input type="hidden" name="billing_city" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_city') ); ?>" />
 					<input type="hidden" name="billing_address_1" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_address_1') ); ?>" />
+					<input type="hidden" name="shipping_method[0]" data-index="0" id="shipping_method_0_free_shipping" value="free_shipping" />
 				</div>
 			</div>
 
