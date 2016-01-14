@@ -4,7 +4,7 @@
 	Plugin Name:       Simplify checkout for Woocommerce
 	Plugin URI:        https://github.com/tanzoor/woocommerce-simplify-checkout
 	Description:       Уменьшает кол-во полей чекаута и переносит в корзину
-	Version:           0.9.1
+	Version:           1.0.0
 	Author:            Александр Павлюков
 	License:           GNU General Public License v2
 	License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,8 +12,11 @@
 	GitHub Branch:     master
 */
 
-// Отключаем выбор типа оплаты в чекауте
+// Отключаем выбор типа оплаты
 add_filter('woocommerce_cart_needs_payment', '__return_false');
+
+// Отключаем выбор способа доставки
+add_filter('woocommerce_cart_needs_shipping', '__return_false');
 
 // Убираем ненужные поля
 add_filter( 'woocommerce_checkout_fields' , 'remove_extra_checkout_fields' );
