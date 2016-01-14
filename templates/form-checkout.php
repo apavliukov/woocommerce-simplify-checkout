@@ -31,21 +31,21 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 			<div class="form-group">
 				<label for="billing_first_name" class="control-label col-md-3"><?php _e( 'First name', 'woocommerce' ); ?></label>
 				<div class="col-md-9">
-					<input type="text" class="input-text form-control" name="billing_first_name" id="billing_firts_name" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_first_name') ); ?>">
+					<input type="text" class="input-text form-control" name="billing_first_name" id="billing_firts_name" required="required" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_first_name') ); ?>">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="billing_phone" class="control-label col-md-3"><?php _e( 'Phone', 'woocommerce' ); ?></label>
 				<div class="col-md-9">
-					<input type="text" class="input-text form-control" name="billing_phone" id="billing_phone" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_phone') ); ?>">
+					<input type="text" class="input-text form-control" name="billing_phone" id="billing_phone" required="required" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_phone') ); ?>">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="account_email" class="control-label col-md-3"><?php _e( 'Email address', 'woocommerce' ); ?></label>
 				<div class="col-md-9">
-					<input type="email" class="input-text form-control" name="billing_email" id="billing_email" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_email') ); ?>" />
+					<input type="email" class="input-text form-control" name="billing_email" id="billing_email" required="required" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_email') ); ?>" />
 				</div>
 			</div>
 
@@ -53,11 +53,6 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 				<div class="col-md-9 col-md-offset-3 checkout-submit">
 					<?php wp_nonce_field( 'woocommerce-process_checkout' ); ?>
 					<input type="submit" class="btn btn-submit" name="woocommerce_checkout_place_order" id="place_order" value="Оформить заказ" data-value="Оформить заказ" />
-					<input type="hidden" name="billing_last_name" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_last_name') ); ?>" />
-					<input type="hidden" name="billing_middle_name" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_middle_name') ); ?>" />
-					<input type="hidden" name="billing_city" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_city') ); ?>" />
-					<input type="hidden" name="billing_address_1" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_address_1') ); ?>" />
-					<input type="hidden" name="shipping_method[0]" data-index="0" id="shipping_method_0_free_shipping" value="free_shipping" />
 				</div>
 			</div>
 
