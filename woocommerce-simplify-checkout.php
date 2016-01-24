@@ -30,6 +30,7 @@ function remove_extra_checkout_fields( $fields ) {
 	unset( $fields['billing']['billing_postcode'] );
 	unset( $fields['billing']['billing_country'] );
 	unset( $fields['billing']['billing_state'] );
+
 	unset( $fields['shipping']['shipping_first_name'] );
 	unset( $fields['shipping']['shipping_last_name'] );
 	unset( $fields['shipping']['shipping_company'] );
@@ -39,9 +40,11 @@ function remove_extra_checkout_fields( $fields ) {
 	unset( $fields['shipping']['shipping_postcode'] );
 	unset( $fields['shipping']['shipping_country'] );
 	unset( $fields['shipping']['shipping_state'] );
+
 	unset( $fields['account']['account_username'] );
 	unset( $fields['account']['account_password'] );
 	unset( $fields['account']['account_password-2'] );
+	
 	unset( $fields['order']['order_comments'] );
 
     return $fields;

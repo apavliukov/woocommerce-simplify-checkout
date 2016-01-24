@@ -6,7 +6,7 @@
 (EN) Short plugin for Woocommerce, which simplifies the ordering process.
 
 Плагин сокращает процесс оформления заказа до ввода 3 полей :
-* имя ( 'billing_firts_name' )
+* имя ( 'billing_first_name' )
 * телефон ( 'billing_email' )
 * e-mail ( 'billing_email' )
 
