@@ -31,21 +31,21 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 			<div class="form-group">
 				<label for="billing_first_name" class="control-label col-md-3"><?php _e( 'First name', 'woocommerce' ); ?></label>
 				<div class="col-md-9">
-					<input type="text" class="input-text form-control" name="billing_first_name" id="billing_firts_name" required="required" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_first_name') ); ?>">
+					<input type="text" class="input-text form-control" name="billing_first_name" id="billing_firts_name" required="required" placeholder="" value="<?php esc_attr_e( get_user_meta( $customer_id, 'billing_first_name', true ) ); ?>">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="billing_phone" class="control-label col-md-3"><?php _e( 'Phone', 'woocommerce' ); ?></label>
 				<div class="col-md-9">
-					<input type="text" class="input-text form-control" name="billing_phone" id="billing_phone" required="required" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_phone') ); ?>">
+					<input type="text" class="input-text form-control" name="billing_phone" id="billing_phone" required="required" placeholder="" value="<?php esc_attr_e( get_user_meta( $customer_id, 'billing_phone', true ) ); ?>">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="account_email" class="control-label col-md-3"><?php _e( 'Email address', 'woocommerce' ); ?></label>
 				<div class="col-md-9">
-					<input type="email" class="input-text form-control" name="billing_email" id="billing_email" required="required" placeholder="" value="<?php esc_attr_e( get_address_field_value($customer_id, 'billing_email') ); ?>" />
+					<input type="email" class="input-text form-control" name="billing_email" id="billing_email" required="required" placeholder="" value="<?php esc_attr_e( get_user_meta( $customer_id, 'billing_email', true ) ); ?>" />
 				</div>
 			</div>
 
