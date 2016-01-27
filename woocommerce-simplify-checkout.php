@@ -1,7 +1,7 @@
 <?php
 
 /*
-	Plugin Name:       Woocommerce Simplify checkout
+	Plugin Name:       Woocommerce Simplify Checkout
 	Plugin URI:        https://github.com/tanzoor/woocommerce-simplify-checkout
 	Description:       Уменьшает кол-во полей чекаута и переносит в корзину
 	Version:           1.0.0
